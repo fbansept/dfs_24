@@ -10,6 +10,8 @@
   text-align: center;
   display: grid;
   place-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .categories {
@@ -32,10 +34,60 @@
       }
     }
 
-    img {
-      height: 70px;
-      width: 70px;
-      object-fit: cover;
+    .image {
+      img {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+      }
+
+      position: relative;
+
+      .bouton-haut {
+        left: 3px;
+        top: 3px;
+        background-color: green;
+
+        &:hover {
+          background-color: rgb(1, 100, 1);
+        }
+      }
+
+      .bouton-bas {
+        left: 3px;
+        bottom: 3px;
+        background-color: orange;
+
+        &:hover {
+          background-color: rgb(216, 133, 0);
+        }
+      }
+
+      .bouton-supprime {
+        right: 3px;
+        top: 3px;
+        background-color: red;
+
+        &:hover {
+          background-color: rgb(190, 0, 0);
+        }
+      }
+
+      &:hover .mini-bouton {
+        display: flex;
+      }
+    }
+
+    .mini-bouton {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      display: none;
+      cursor: pointer;
+      user-select: none;
     }
   }
 

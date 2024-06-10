@@ -1,20 +1,36 @@
 <div class="d-flex mb-4">
-  <input class="input-url" />
-  <div class="bouton"><span>Ajouter l'élement</span></div>
+  <input [(ngModel)]="saisieInputUrl" class="input-url" />
+  <div class="bouton" (click)="onClicAjouterElement()">
+    <span>Ajouter l'élement</span>
+  </div>
 </div>
 
 <div class="categories">
-  @for (categorie of categories; track $index) {
+  @for (categorie of categories; let indexCategorie = $index ; track indexCategorie) {
 
   <div class="categorie">
     <div class="en-tete">
       <span>{{ categorie.titre }}</span>
     </div>
 
-    <div class="elements">
-      @for (item of categorie.elements; track $index) {
+    <div class="elements d-flex">
+      @for (item of categorie.elements; let indexElement = $index ; track indexElement) {
 
-      <img src="{{ item }}" />
+      <div class="image">
+        <img src="{{ item }}" />
+        <div class="mini-bouton bouton-haut" (click)="onClicBoutonHaut()">
+          <span>&#x25B2;</span>
+        </div>
+        <div class="mini-bouton bouton-bas" (click)="onClicBoutonBas()">
+          <span>&#x25BC;</span>
+        </div>
+        <div
+          class="mini-bouton bouton-supprime"
+          (click)="onClicBoutonSupprimeElement(indexCategorie, indexElement)"
+        >
+          <span>X</span>
+        </div>
+      </div>
 
       }
     </div>
