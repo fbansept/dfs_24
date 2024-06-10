@@ -17,10 +17,16 @@
   indexCategorie) {
 
   <div class="categorie">
-    <div class="en-tete">
+    <div class="en-tete" (dblclick)="categorie.edite = true">
+      @if(categorie.edite) {
+      <input
+        [(ngModel)]="categorie.titre"
+        (blur)="onSortieInput(categorie)"
+        (keyup)="onKeyUp($event, categorie)"
+      />
+      } @else {
       <span>{{ categorie.titre }}</span>
-
-      @if(categories.length > 1 ) {
+      } @if(categories.length > 1 ) {
 
       <div
         class="mini-bouton bouton-supprime"

@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+declare type Categorie = {
+  titre: string;
+  elements: string[];
+  edite: boolean;
+};
+
 @Component({
   selector: 'app-accueil',
   standalone: true,
@@ -9,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './accueil.component.scss',
 })
 export class AccueilComponent {
-  categories: { titre: string; elements: string[] }[] = [];
+  categories: Categorie[] = [];
 
   saisieInputUrl: string = '';
 
@@ -22,11 +28,11 @@ export class AccueilComponent {
       this.categories = JSON.parse(jsonCategories);
     } else {
       this.categories = [
-        { titre: 'Top', elements: [] },
-        { titre: 'Bien', elements: [] },
-        { titre: 'Moyen', elements: [] },
-        { titre: 'Nul', elements: [] },
-        { titre: 'Horrible', elements: [] },
+        { titre: 'Top', elements: [], edite: false },
+        { titre: 'Bien', elements: [], edite: false },
+        { titre: 'Moyen', elements: [], edite: false },
+        { titre: 'Nul', elements: [], edite: false },
+        { titre: 'Horrible', elements: [], edite: false },
       ];
     }
   }
@@ -80,6 +86,7 @@ export class AccueilComponent {
     this.categories.push({
       titre: this.saisieInputCategorie,
       elements: [],
+      edite: false,
     });
 
     this.saisieInputCategorie = '';
@@ -105,5 +112,17 @@ export class AccueilComponent {
     this.categories.splice(indexCategorie, 1);
 
     this.sauvegarde();
+  }
+
+  onSortieInput(categorie: Categorie) {
+    categorie.edite = false;
+    this.sauvegarde();
+  }
+
+  onKeyUp(evenement: KeyboardEvent, categorie: Categorie) {
+
+    if (evenement.code == 'Enter' || evenement.code == 'Escape') {
+      this.onSortieInput(categorie);
+    }
   }
 }
