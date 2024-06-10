@@ -26,11 +26,16 @@
       background-color: #fb00ff;
       display: grid;
       place-items: center;
+      position: relative;
 
       span {
         word-wrap: break-word;
         width: inherit;
         text-align: center;
+      }
+
+      &:hover .mini-bouton {
+        display: flex;
       }
     }
 
@@ -63,22 +68,23 @@
         }
       }
 
-      .bouton-supprime {
-        right: 3px;
-        top: 3px;
-        background-color: red;
-
-        &:hover {
-          background-color: rgb(190, 0, 0);
-        }
-      }
-
       &:hover .mini-bouton {
         display: flex;
       }
     }
 
+    .bouton-supprime {
+      right: 3px;
+      top: 3px;
+      background-color: red;
+
+      &:hover {
+        background-color: rgb(190, 0, 0);
+      }
+    }
+
     .mini-bouton {
+      border: 1px solid black;
       position: absolute;
       height: 20px;
       width: 20px;
