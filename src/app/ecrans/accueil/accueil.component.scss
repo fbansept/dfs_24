@@ -24,9 +24,19 @@
     .en-tete {
       width: 70px;
       background-color: #fb00ff;
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+
+      >span,
+      >input {
+        &:not(.visible) {
+          opacity: 0;
+          width: 0px;
+          height: 0px;
+        }
+      }
 
       span {
         word-wrap: break-word;

@@ -114,13 +114,30 @@ export class AccueilComponent {
     this.sauvegarde();
   }
 
+  onEntreeInput(categorie: Categorie, evenement: any) {
+    //on enleve l'edtion de la potentielle catégorie actuelle en
+    //reinitialisdant toutes les propriétés "edite"
+    this.categories.forEach((categorie) => (categorie.edite = false));
+
+    //on ne change que celle qui a été double cliquée
+    categorie.edite = true;
+
+    //on recupere l'element clique (header / span)
+    const elementClique = evenement.target;
+
+    const enTete = elementClique.closest(".en-tete")
+
+    const input = enTete.querySelector('input');
+
+    input.focus();
+  }
+
   onSortieInput(categorie: Categorie) {
     categorie.edite = false;
     this.sauvegarde();
   }
 
   onKeyUp(evenement: KeyboardEvent, categorie: Categorie) {
-
     if (evenement.code == 'Enter' || evenement.code == 'Escape') {
       this.onSortieInput(categorie);
     }
